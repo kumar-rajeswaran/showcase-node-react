@@ -63,6 +63,7 @@ export class UserService {
       firstName: user.firstName,
       lastName: user.lastName,
       createdOn: user.createdOn,
+      isActive: user.isActive,
     });
   }
   async signin(userEmail: string, password: string): Promise<IApiResponse<string>> {
@@ -76,7 +77,7 @@ export class UserService {
       return new IApiResponse<string>(StatusCodes.UNAUTHORIZED, "");
     }
     const { email, firstName, id, lastName } = user;
-    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "1h" });
+    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "1m" });
     return new IApiResponse<string>(StatusCodes.OK, token);
   }
 }

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export const errorHandlingMiddleware = (error: Error, req: Request, res: Response, next: NextFunction) => {
+export const errorHandlingMiddleware = (error: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(error);
   if (error instanceof CustomError) {
     return res.status(error.statusCode).json({ error: error.message });

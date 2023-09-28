@@ -8,4 +8,4 @@ export interface IUserSignup {
   password: string;
 }
 
-export type IUserResponse = Partial<Pick<Users, "id" | "email" | "firstName" | "lastName" | "createdOn">>;
+export type IUserResponse = Partial<Pick<Users, "id" | "email" | "firstName" | "lastName" | "createdOn" | "isActive">>;
