@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button, Form, Card } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +41,7 @@ export default function Signin() {
         <Col lg={4} md={6} sm={6}>
           <Card className="shadow">
             <Card.Title className="text-center border-bottom">
-              <h2 className="p-3">Login</h2>
+              <h2 className="p-3">SignIn</h2>
             </Card.Title>
             <Card.Body>
               <Form noValidate validated={validated} onSubmit={handleSign}>
@@ -71,6 +71,9 @@ export default function Signin() {
                   <Button type="submit">Signin</Button>
                 </Form.Group>
               </Form>
+              <p className="mt-3">
+                Don't have an account? <Link to="/signup">Sign Up</Link>
+              </p>
             </Card.Body>
           </Card>
         </Col>

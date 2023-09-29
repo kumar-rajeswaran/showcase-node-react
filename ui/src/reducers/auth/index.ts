@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IActionWithOutPayload, IActionWithpayload, IAuthReducer, ISignInRequest, ISignInResponse } from "../../types";
+import {
+  IActionWithOutPayload,
+  IActionWithpayload,
+  IAuthReducer,
+  ISignInRequest,
+  ISignInResponse,
+  ISignUpRequest,
+} from "../../types";
 
 const initialState: IAuthReducer = {
   user: {},
@@ -36,7 +43,10 @@ export const authSlice = createSlice({
       state.token = "";
       state.isFetching = false;
     },
+    doSignUp: (state: IAuthReducer, _action: IActionWithpayload<ISignUpRequest>) => {
+      state.isFetching;
+    },
   },
 });
 
-export const { doLogin, doLogout, setSigInResponse, setToken, doValidateToken } = authSlice.actions;
+export const { doLogin, doLogout, setSigInResponse, setToken, doValidateToken, doSignUp } = authSlice.actions;

@@ -13,14 +13,14 @@ export class UserService {
     }
     return this.instance;
   }
-  async createUser({ email, firstName, lastName, password }: IUserSignup): Promise<IApiResponse<Partial<Users>>> {
+  async createUser({ email, firstName, lastName, password }: IUserSignup): Promise<IApiResponse<string>> {
     const checkUser = await dbConfig.getRepository(Users).exist({
       where: {
         email,
       },
     });
     if (checkUser) {
-      return new IApiResponse<Partial<Users>>(StatusCodes.CONFLICT, {}, "Users Already Exist!");
+      return new IApiResponse<string>(StatusCodes.CONFLICT, "", "Users Already Exist!");
     }
     const hashedPassword = await hash(password, 13);
     const userEntity = new Users();
@@ -31,9 +31,11 @@ export class UserService {
 
     const userRes = await dbConfig.getRepository(Users).save(userEntity);
     if (!userRes) {
-      return new IApiResponse<Partial<Users>>(StatusCodes.BAD_REQUEST, {});
+      return new IApiResponse<string>(StatusCodes.BAD_REQUEST, "");
     }
-    return new IApiResponse<Partial<Users>>(StatusCodes.OK, { email, firstName, id: userRes.id, lastName });
+    const { id } = userRes;
+    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "1m" });
+    return new IApiResponse<string>(StatusCodes.OK, token);
   }
 
   async getAll(): Promise<IApiResponse<IUserResponse[]>> {
