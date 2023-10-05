@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { createTransport } from "nodemailer";
 import fs from "fs";
 
 interface MailOptions {
@@ -11,7 +11,7 @@ interface MailOptions {
 export const sendEmail = async () => {
   const emailTemplate = fs.readFileSync("emailTemplate.html", "utf8");
 
-  const transporter = nodemailer.createTransport({
+  const transporter = createTransport({
     service: "gmail",
     auth: {
       user: "brooke.gorczany@ethereal.email",
