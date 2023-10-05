@@ -16,7 +16,7 @@ export const VaalidateToken = () => {
     if (isLoggedin) {
       const intervalId = setInterval(() => {
         dispatch(doValidateToken());
-      }, 3000);
+      }, 30000);
       return () => {
         clearInterval(intervalId);
       };

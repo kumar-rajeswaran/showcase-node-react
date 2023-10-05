@@ -34,7 +34,7 @@ export class UserService {
       return new IApiResponse<string>(StatusCodes.BAD_REQUEST, "");
     }
     const { id } = userRes;
-    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "1m" });
+    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "15m" });
     return new IApiResponse<string>(StatusCodes.OK, token);
   }
 
@@ -79,7 +79,7 @@ export class UserService {
       return new IApiResponse<string>(StatusCodes.UNAUTHORIZED, "");
     }
     const { email, firstName, id, lastName } = user;
-    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "1m" });
+    const token = jwt.sign({ email, firstName, id, lastName }, `${SECRET_KEY}`, { expiresIn: "15m" });
     return new IApiResponse<string>(StatusCodes.OK, token);
   }
 }

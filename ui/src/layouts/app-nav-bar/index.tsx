@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { NavDropdown, Image } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { doLogout } from "../../reducers";
@@ -26,14 +26,14 @@ export const AppNavBar = (props: AppNavBarProps) => {
       removeEventListener("resize", onheaderResize);
     };
   });
-  const authData = useSelector((state: IStore) => state.auth.data);
+  const authData = useSelector((state: IStore) => state.auth.user);
   const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedin);
   useEffect(() => {
     if (!isLoggedIn) navigate("/");
   });
   const userTitle = (
     <span>
-      <Image src={authData.image} roundedCircle width={40} height={40} className="p-2" />
+      <i className="bi bi-person-circle"></i>
       {authData.firstName}
     </span>
   );
