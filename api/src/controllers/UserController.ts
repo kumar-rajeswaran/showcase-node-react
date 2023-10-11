@@ -22,7 +22,7 @@ export class UserController {
 
   public async signIn(req: Request, res: Response, _next: NextFunction) {
     const { email, password } = req.body;
-    const resData = await UserService.getInstance().signin(email, password);
+    const resData = await UserService.getInstance().signIn(email, password);
     res.status(resData.status).send(resData);
   }
 

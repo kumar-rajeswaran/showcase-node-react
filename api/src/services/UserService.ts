@@ -68,7 +68,7 @@ export class UserService {
       isActive: user.isActive,
     });
   }
-  async signin(userEmail: string, password: string): Promise<IApiResponse<string>> {
+  async signIn(userEmail: string, password: string): Promise<IApiResponse<string>> {
     const user = await dbConfig.getRepository(Users).findOneBy({
       email: userEmail,
     });
