@@ -5,7 +5,7 @@ interface IProducts {
   data: string;
 }
 
-const AccordianItem = ({ eventKey, data }: IProducts) => {
+const AccordionItem = ({ eventKey, data }: IProducts) => {
   return (
     <Accordion.Item eventKey={`${eventKey}`}>
       <Accordion.Header>Product #{eventKey}</Accordion.Header>
@@ -33,7 +33,7 @@ export default function Products() {
     >
       <Accordion className="product-list" defaultActiveKey="0">
         {productData.slice(0, loadDataLimit).map((it, i) => (
-          <AccordianItem key={`item${i}`} eventKey={`${i}`} data={it} />
+          <AccordionItem key={`item${i}`} eventKey={`${i}`} data={it} />
         ))}
       </Accordion>
     </div>

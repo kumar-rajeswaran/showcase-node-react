@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IActionWithOutPayload, IActionWithpayload, IUser, IUserReducer } from "../../types";
+import { IActionWithOutPayload, IActionWithPayload, IUser, IUserReducer } from "../../types";
 
 const initialState: IUserReducer = {
   isFetching: false,
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
     loadUsers: (state: IUserReducer, _action: IActionWithOutPayload) => {
       state.isFetching = true;
     },
-    setUsers: (state: IUserReducer, action: IActionWithpayload<IUser[]>) => {
+    setUsers: (state: IUserReducer, action: IActionWithPayload<IUser[]>) => {
       state.user = action.payload;
       state.isFetching = false;
     },

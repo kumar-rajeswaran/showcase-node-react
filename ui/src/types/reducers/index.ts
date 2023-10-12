@@ -1,6 +1,6 @@
 import { ISignInResponse, IUser } from "types";
 
-export interface IActionWithpayload<T> {
+export interface IActionWithPayload<T> {
   type: string;
   payload: T;
 }
@@ -15,7 +15,7 @@ export interface IUserReducer {
 
 export interface IAuthReducer {
   isFetching: boolean;
-  isLoggedin: boolean;
+  isLoggedIn: boolean;
   user: ISignInResponse;
   token: string;
 }

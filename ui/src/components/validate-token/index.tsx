@@ -4,16 +4,16 @@ import { doValidateToken } from "reducers";
 import { SetAuthorizationHeader } from "services/api";
 import { IStore } from "types";
 
-export const VaalidateToken = () => {
+export const ValidateToken = () => {
   const dispatch = useDispatch();
   const token = useSelector((state: IStore) => state.auth.token);
-  const isLoggedin = useSelector((state: IStore) => state.auth.isLoggedin);
+  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedIn);
   useEffect(() => {
     SetAuthorizationHeader(token);
   }, [token]);
 
   useEffect(() => {
-    if (isLoggedin) {
+    if (isLoggedIn) {
       const intervalId = setInterval(() => {
         dispatch(doValidateToken());
       }, 30000);
@@ -21,6 +21,6 @@ export const VaalidateToken = () => {
         clearInterval(intervalId);
       };
     }
-  }, [dispatch, isLoggedin]);
+  }, [dispatch, isLoggedIn]);
   return <></>;
 };

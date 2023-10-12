@@ -1,10 +1,10 @@
 import { put, PutEffect, takeLatest } from "redux-saga/effects";
 import { doLogin, doLogout, doSignUp, doValidateToken, setSigInResponse, setToken } from "../../reducers";
 import { authService } from "../../services";
-import { IActionWithpayload, ISignInRequest, ISignInResponse, ISignUpRequest } from "../../types";
+import { IActionWithPayload, ISignInRequest, ISignInResponse, ISignUpRequest } from "../../types";
 import { SetAuthorizationHeader } from "services/api";
 
-function* handleLogin(action: IActionWithpayload<ISignInRequest>): Generator<Promise<string> | PutEffect, void, string> {
+function* handleLogin(action: IActionWithPayload<ISignInRequest>): Generator<Promise<string> | PutEffect, void, string> {
   try {
     const loginRes = yield authService.login(action.payload);
     SetAuthorizationHeader(loginRes);
@@ -14,7 +14,7 @@ function* handleLogin(action: IActionWithpayload<ISignInRequest>): Generator<Pro
   }
 }
 
-function* handleSignUp(action: IActionWithpayload<ISignUpRequest>): Generator<Promise<string> | PutEffect, void, string> {
+function* handleSignUp(action: IActionWithPayload<ISignUpRequest>): Generator<Promise<string> | PutEffect, void, string> {
   try {
     const loginRes = yield authService.signUp(action.payload);
     SetAuthorizationHeader(loginRes);

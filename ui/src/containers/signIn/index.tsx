@@ -6,11 +6,11 @@ import { IStore } from "../../types/store";
 import { doLogin } from "../../reducers";
 import { ISignInRequest } from "types";
 
-export default function Signin() {
+export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
-  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedin);
+  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedIn);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   useEffect(() => {

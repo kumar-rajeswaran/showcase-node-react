@@ -13,21 +13,21 @@ export const AppNavBar = (props: AppNavBarProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const onheaderResize = useCallback(() => {
+  const onHeaderResize = useCallback(() => {
     const headerHeight = headerRef?.current;
     if (headerHeight) {
       props.setHeaderHeight(`${headerHeight?.clientHeight + 20}px`);
     }
   }, [props]);
   useEffect(() => {
-    window.addEventListener("resize", onheaderResize);
-    onheaderResize();
+    window.addEventListener("resize", onHeaderResize);
+    onHeaderResize();
     return () => {
-      removeEventListener("resize", onheaderResize);
+      removeEventListener("resize", onHeaderResize);
     };
   });
   const authData = useSelector((state: IStore) => state.auth.user);
-  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedin);
+  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedIn);
   useEffect(() => {
     if (!isLoggedIn) navigate("/");
   });

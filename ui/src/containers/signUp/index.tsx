@@ -13,17 +13,17 @@ interface ISignUpRequest {
   lastName: string;
 }
 
-export default function Signup() {
+export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedin);
+  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedIn);
   const [formData, setFormData] = useState<ISignUpRequest>({
     email: "",
     password: "",
     firstName: "",
     lastName: "",
   });
-  const [confirmPassword, setconfirmPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -125,17 +125,17 @@ export default function Signup() {
                     name="confirmPassword"
                     isInvalid={confirmPassword !== formData.password}
                     onChange={(evt) => {
-                      setconfirmPassword(evt.target?.value);
+                      setConfirmPassword(evt.target?.value);
                     }}
                     required
                   />
                 </Form.Group>
                 <Form.Group className="d-grid mb-4">
-                  <Button type="submit">Signup</Button>
+                  <Button type="submit">SignUp</Button>
                 </Form.Group>
               </Form>
               <p className="mt-3">
-                Already have an account? <Link to="/signin">Sign In</Link>
+                Already have an account? <Link to="/signIn">Sign In</Link>
               </p>
             </Card.Body>
           </Card>

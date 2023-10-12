@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   IActionWithOutPayload,
-  IActionWithpayload,
+  IActionWithPayload,
   IAuthReducer,
   ISignInRequest,
   ISignInResponse,
@@ -11,7 +11,7 @@ import {
 const initialState: IAuthReducer = {
   user: {},
   isFetching: false,
-  isLoggedin: false,
+  isLoggedIn: false,
   token: "",
 };
 
@@ -19,31 +19,31 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    doLogin: (state: IAuthReducer, _action: IActionWithpayload<ISignInRequest>) => {
+    doLogin: (state: IAuthReducer, _action: IActionWithPayload<ISignInRequest>) => {
       state.isFetching = true;
-      state.isLoggedin = false;
+      state.isLoggedIn = false;
     },
-    setToken: (state: IAuthReducer, action: IActionWithpayload<string>) => {
+    setToken: (state: IAuthReducer, action: IActionWithPayload<string>) => {
       state.token = action.payload;
     },
     doValidateToken: (state: IAuthReducer, _action: IActionWithOutPayload) => {
       state.isFetching = true;
     },
-    setSigInResponse: (state: IAuthReducer, action: IActionWithpayload<ISignInResponse>) => {
+    setSigInResponse: (state: IAuthReducer, action: IActionWithPayload<ISignInResponse>) => {
       if (action.payload) {
         state.user = action.payload;
-        state.isLoggedin = true;
+        state.isLoggedIn = true;
       }
       state.isFetching = false;
     },
     doLogout: (state: IAuthReducer, _action: IActionWithOutPayload) => {
       state.isFetching = true;
-      state.isLoggedin = false;
+      state.isLoggedIn = false;
       state.user = {};
       state.token = "";
       state.isFetching = false;
     },
-    doSignUp: (state: IAuthReducer, _action: IActionWithpayload<ISignUpRequest>) => {
+    doSignUp: (state: IAuthReducer, _action: IActionWithPayload<ISignUpRequest>) => {
       state.isFetching;
     },
   },
