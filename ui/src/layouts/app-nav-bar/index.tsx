@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { doLogout } from "../../reducers";
 import { IStore } from "../../types";
 
@@ -10,7 +10,6 @@ interface AppNavBarProps {
 }
 
 export const AppNavBar = (props: AppNavBarProps) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const headerRef = useRef<HTMLDivElement | null>(null);
   const onHeaderResize = useCallback(() => {
@@ -27,10 +26,6 @@ export const AppNavBar = (props: AppNavBarProps) => {
     };
   });
   const authData = useSelector((state: IStore) => state.auth.user);
-  const isLoggedIn = useSelector((state: IStore) => state.auth.isLoggedIn);
-  useEffect(() => {
-    if (!isLoggedIn) navigate("/");
-  });
   const userTitle = (
     <span>
       <i className="bi bi-person-circle"></i>
